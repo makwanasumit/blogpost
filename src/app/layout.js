@@ -4,6 +4,7 @@ import { ThemeContextProvider } from "@/context/ThemeContext";
 import ThemeProvider from "@/provider/ThemeProvider";
 import Footer from "@/app/component/Footer/Footer";
 import NavBar from "@/app/component/NavBar/NavBar";
+import AuthProvider from "@/provider/AuthProvider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -25,18 +26,20 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <AuthProvider>
 
-        <ThemeContextProvider>
-          <ThemeProvider>
-            <div className="min-h-screen ">
-              <div className="max-w-[95rem] mx-auto ">
-                <NavBar className=' py-2 p-10' />
-                {children}
-                <Footer className=' py-10 px-40 ' />
+          <ThemeContextProvider>
+            <ThemeProvider>
+              <div className="min-h-screen ">
+                <div className="max-w-[95rem] mx-auto ">
+                  <NavBar className=' py-2 p-10' />
+                  {children}
+                  <Footer className=' py-10 px-40 ' />
+                </div>
               </div>
-            </div>
-          </ThemeProvider>
-        </ThemeContextProvider>
+            </ThemeProvider>
+          </ThemeContextProvider>
+        </AuthProvider>
       </body>
     </html>
   );

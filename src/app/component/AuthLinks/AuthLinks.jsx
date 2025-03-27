@@ -1,9 +1,10 @@
 
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link'
 import React from 'react'
 
 const AuthLinks = ({ className }) => {
-    status = 'authenticated'
+    const { status } = useSession();
     return (
         <>
             {status === 'unauthenticated' ? (
@@ -12,7 +13,7 @@ const AuthLinks = ({ className }) => {
 
                 <>
                     <Link href='/write' className={`${className} `}>Write</Link>
-                    <span  href='/logout' className={`${className} cursor-pointer`}>Logout</span>
+                    <span onClick={() => signOut()} className={`${className} cursor-pointer`}>Logout</span>
                 </>
             )}
         </>
