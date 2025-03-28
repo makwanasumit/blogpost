@@ -1,28 +1,32 @@
 'use client'
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { CiCirclePlus, CiImageOn } from "react-icons/ci";
-import { IoCloudUploadOutline } from "react-icons/io5";
-import { MdOutlineVideoSettings } from "react-icons/md";
-import AddWidget from '@/app/component/AddWidget';
-import { Button } from '@/app/component/ui/button'
+import React, { useEffect } from 'react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import EditorComonent from '@/app/component/Editor/EditorComponent';
 
+const Page = () => {
+    const router = useRouter();
+    const { data, status } = useSession();
 
+    useEffect(() => {
+        if (status === 'unauthenticated') {
+            router.push('/loginpage');
+        }
+    }, [status, router]); // Run only when status or router changes
 
+    if (status === 'loading') {
+        return <div>Loading...</div>;
+    }
 
+    if (status === 'unauthenticated') {
+        return null; // Prevents rendering before redirecting
+    }
 
-const page = () => {
-
-    
-        
-    
     return (
         <div className='select-none my-16'>
-            <EditorComonent/>
+            <EditorComonent />
         </div>
-    )
-}
+    );
+};
 
-export default page
-
+export default Page;

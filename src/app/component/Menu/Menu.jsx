@@ -2,9 +2,11 @@
 import { ThemeContext } from '@/context/ThemeContext'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 
-const Menu = ({ className }) => {
+const Menu = ({ className, }) => {
+
+
 
   const { theme } = useContext(ThemeContext)
 
@@ -69,25 +71,25 @@ const Menu = ({ className }) => {
 
 
       <div className="w-full my-14 mx-2">
-      <h2 className={`${theme === 'light' ? 'text-gray-800' : 'text-gray-400'} text-sm`}>
-        Discover by topic
-      </h2>
-      <h1 className="text-4xl font-bold mb-6">
-        Categories
+        <h2 className={`${theme === 'light' ? 'text-gray-800' : 'text-gray-400'} text-sm`}>
+          Discover by topic
+        </h2>
+        <h1 className="text-4xl font-bold mb-6">
+          Categories
         </h1>
 
-      <div className="grid grid-cols-3 grid-rows-2 gap-2">
-        {categories.map(({ img, name, hoverColor, color }) => (
-          <Link
-            key={name}
-            href={`/blog?cat=${name}`}
-            className={`${color} ${hoverColor} flex gap-2 items-center justify-center p-4 rounded-lg`}
-          >
-            {name}
-          </Link>
-        ))}
+        <div className="grid grid-cols-3 grid-rows-2 gap-2">
+          {categories.map(({ img, name, hoverColor, color }) => (
+            <Link
+              key={name}
+              href={`/blog?cat=${name}`}
+              className={`${color} ${hoverColor} flex gap-2 items-center justify-center p-4 rounded-lg`}
+            >
+              {name}
+            </Link>
+          ))}
+        </div>
       </div>
-    </div>
 
 
 

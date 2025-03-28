@@ -26,7 +26,7 @@ const Login = () => {
                 Sign in with Google
             </div>
 
-            <div className='p-4 rounded-lg font-bold cursor-pointer bg-[#1F7CF1] w-full text-center'>
+            <div onClick={() => signIn("github")} className='p-4 rounded-lg font-bold cursor-pointer bg-[#1F7CF1] w-full text-center'>
                 Sign in with Github
             </div>
             <div className='p-4 rounded-lg font-bold cursor-pointer bg-[#393939] w-full text-center'>
